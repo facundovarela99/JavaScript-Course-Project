@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+h1{
+    text-align: center;
+    font-size: 3rem;
+}
+
+.contenedorListaCursos{
+    width: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.botones{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
