@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Todo Cursos</title>
 </head>
+
 <body>
     <header>
         <nav>
             <a href="./index.html">Inicio</a>
             <a href="#">Sobre los lenguajes</a>
             <a href="#">Contacto</a>
-            <a href="#">
-                <img src="./assets/img/shopping-cart.png" alt="">
-                <span class="contadorElementosCarrito">0</span>
+            <a class="carritoAnchor" href="#">
+                <button class="btn btn-primary cartBtn" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                    <img src="./assets/img/shopping-cart.png" alt="">
+                    <span class="contadorElementosCarrito"></span>
+                </button>
             </a>
+            <button class="btnVaciarCarrito" type="button">Vaciar carrito</button>
         </nav>
     </header>
     <main>
         <h1>Tienda Online de Cursos de Programacion</h1>
         <div class="contenedorListaCursos"></div>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Tu carrito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+            </div>
+        </div>
+
     </main>
     <footer></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

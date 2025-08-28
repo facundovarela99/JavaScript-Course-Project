@@ -4,11 +4,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+body {
     margin: 0;
 }
 
-header{
+header {
     margin: 0;
     position: sticky;
     top: 0;
@@ -18,8 +18,9 @@ header{
 }
 
 a {
-    text-decoration: none;
-    color: black;
+    text-decoration: none !important;
+    color: black !important;
+    font-size: 1.5rem;
 }
 
 nav {
@@ -33,6 +34,8 @@ nav {
 h1 {
     text-align: center;
     font-size: 3rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .contenedorListaCursos {
@@ -47,7 +50,16 @@ h1 {
     padding-right: 15px;
 }
 
-.imagenCurso{
+.contadorElementosCarrito {
+    display: inline-block;
+    width: 2em;
+    text-align: center;
+    outline: none;
+    background-color: brown;
+    border-radius: 50px;
+}
+
+.imagenCurso {
     width: 100px;
 }
 
@@ -57,7 +69,14 @@ h1 {
     width: 50%;
 }
 
-button {
-    margin-top: 10px;
-    margin-bottom: 10px;
+#botonVerInfo,#botonComprar {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    border-radius: 5px !important;
+}
+
+.cartBtn {
+    background-color: transparent !important;
+    border: transparent !important;
+    border-radius: 5px !important;
 }

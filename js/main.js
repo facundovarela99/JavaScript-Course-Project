@@ -101,8 +101,8 @@ listaCursos.forEach(curso => {  //se recorre el array y por cada objeto (curso) 
                     <h2 class="precioCurso">Precio ${curso.precio} pesos argentinos</h2>
                     <img class="imagenCurso" src="${curso.img}" alt="Logo del curso">
                     <div class="botones">
-                        <button class="botonVerInfo">Acerca de ${curso.nombre}</button>
-                        <button class="botonComprar${curso.id}" data-id="${curso.id}" data-precio="${curso.precio}">Agregar curso al carrito</button>
+                        <button id="botonVerInfo" class="botonVerInfo">Acerca de ${curso.nombre}</button>
+                        <button id="botonComprar" class="botonComprar${curso.id}" data-id="${curso.id}" data-precio="${curso.precio}" data-img="${curso.img}">Agregar curso al carrito</button>
                     </div>
                 `;
 
@@ -113,6 +113,7 @@ listaCursos.forEach(curso => {  //se recorre el array y por cada objeto (curso) 
     botonComprar.addEventListener('click', ()=>{                //se le agrega un evento de tipo click
         const idCurso = botonComprar.getAttribute('data-id');   //se toma id del objeto de la tarjeta clickeada/seleccionada
         const valorCurso = botonComprar.getAttribute('data-precio'); //se toma el precio del objeto de la tarjeta clickeada/seleccionada
+        const imgCurso = botonComprar.getAttribute('data-img');
         let carrito; //variable para guardar en el localStorage
         if (localStorage.getItem('carrito')===null) {  //si no se encuentra en el localStorage
             carrito = [];                                //se crea un array vacío
@@ -136,7 +137,8 @@ listaCursos.forEach(curso => {  //se recorre el array y por cada objeto (curso) 
         } else {                    //Si no:
             let nuevoCurso = {   //se crea un nuevo objeto con id y precio seleccionados del atributo data-id y data-precio 
                 'id':idCurso,
-                'precio':valorCurso
+                'precio':valorCurso,
+                'img':imgCurso
             };
             carrito.push(nuevoCurso); //se agrega el objeto al array
             localStorage.setItem('carrito', JSON.stringify(carrito)); //se parsea a json y se envía al localStorage
@@ -149,6 +151,19 @@ listaCursos.forEach(curso => {  //se recorre el array y por cada objeto (curso) 
     });
 });
 
+botonVaciarCarrito = document.querySelector('.btnVaciarCarrito');
+
+botonVaciarCarrito.addEventListener('click', ()=>{
+    localStorage.removeItem('contadorCursos');
+    localStorage.removeItem('carrito');
+    contadorElementosCarrito.innerHTML = 0;
+})
+
+// botonCarrito = document.querySelector('.cartBtn');
+
+// botonCarrito.addEventListener('click',() =>{
+//     document.querySelector('.offcanvas-body').innerHTML = localStorage.getItem('carrito');
+// })
 
 
 
