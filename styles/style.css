@@ -4,12 +4,17 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+body{
+    margin: 0;
+}
+
 header{
     margin: 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: rgb(68, 76, 77);
+    background-color: rgb(194, 194, 194);
+    padding: 10px;
 }
 
 a {

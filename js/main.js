@@ -83,6 +83,14 @@ const listaCursos = [
 const contenedorListaCursos = document.querySelector('.contenedorListaCursos');
 let contadorElementosCarrito = document.querySelector('.contadorElementosCarrito');
 
+
+if (localStorage.getItem('contadorCursos') ===  null) {
+    contadorElementosCarrito.innerHTML = 0;
+} else {
+    contadorElementosCarrito.innerHTML = localStorage.getItem('contadorCursos');
+}
+
+
 listaCursos.forEach(curso => {
     const etiquetaCurso = document.createElement('div');
     etiquetaCurso.className = 'curso';
@@ -131,7 +139,7 @@ listaCursos.forEach(curso => {
             };
             carrito.push(nuevoCurso);
             localStorage.setItem('carrito', JSON.stringify(carrito));
-            let cursosAlmacenados = Number(contadorElementosCarrito.textContent);
+            cursosAlmacenados=Number(contadorElementosCarrito.textContent);
             cursosAlmacenados++;
             localStorage.setItem('contadorCursos', Number(cursosAlmacenados));
             contadorElementosCarrito.innerHTML = localStorage.getItem('contadorCursos');
