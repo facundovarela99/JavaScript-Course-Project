@@ -1,4 +1,4 @@
-const listaCursos = [
+const listaCursos = [ //Listado de cursos hardcodeado
     {
         id: 1,
         nombre: 'JavaScript',
@@ -80,18 +80,19 @@ const listaCursos = [
         img: "assets/img/html css and javascript.jpeg"
     }
 ]
-const contenedorListaCursos = document.querySelector('.contenedorListaCursos');
-let contadorElementosCarrito = document.querySelector('.contadorElementosCarrito');
+
+const contenedorListaCursos = document.querySelector('.contenedorListaCursos'); //contenedor de las tarjetas/cursos
+let contadorElementosCarrito = document.querySelector('.contadorElementosCarrito'); //contador que representa los cursos agregados al carrito
 
 
-if (localStorage.getItem('contadorCursos') ===  null) {
-    contadorElementosCarrito.innerHTML = 0;
-} else {
-    contadorElementosCarrito.innerHTML = localStorage.getItem('contadorCursos');
-}
+if (localStorage.getItem('contadorCursos') ===  null) { //si no está el contador en el localStorage
+    contadorElementosCarrito.innerHTML = 0;                 // el contenido del contador del carrito será 0
+} else {                                                //Si no
+    contadorElementosCarrito.innerHTML = localStorage.getItem('contadorCursos'); //el contador tomara como contenido el valor del contador de cursos en el localStorage
+}                                                                                
 
 
-listaCursos.forEach(curso => {
+listaCursos.forEach(curso => {  //se recorre el array y por cada objeto (curso) se crea contenido HTML
     const etiquetaCurso = document.createElement('div');
     etiquetaCurso.className = 'curso';
     etiquetaCurso.innerHTML = `
@@ -105,49 +106,47 @@ listaCursos.forEach(curso => {
                     </div>
                 `;
 
-    contenedorListaCursos.appendChild(etiquetaCurso);
+    contenedorListaCursos.appendChild(etiquetaCurso);  //se agrega cada tarjeta/curso creado al contenedor
 
-    const botonComprar = etiquetaCurso.querySelector(`.botonComprar${curso.id}`);
-
-    botonComprar.addEventListener('click', ()=>{
-        const idCurso = botonComprar.getAttribute('data-id');
-        const valorCurso = botonComprar.getAttribute('data-precio');
-        let carrito;
-        if (localStorage.getItem('carrito')===null) {
-            carrito = [];
-        } else{
-            carrito = JSON.parse(localStorage.getItem('carrito'));
+    const botonComprar = etiquetaCurso.querySelector(`.botonComprar${curso.id}`); //constante que toma cada botón con la clase botonComprar y el id
+                                                                                  //para tomar exactamente un botón por vez
+    botonComprar.addEventListener('click', ()=>{                //se le agrega un evento de tipo click
+        const idCurso = botonComprar.getAttribute('data-id');   //se toma id del objeto de la tarjeta clickeada/seleccionada
+        const valorCurso = botonComprar.getAttribute('data-precio'); //se toma el precio del objeto de la tarjeta clickeada/seleccionada
+        let carrito; //variable para guardar en el localStorage
+        if (localStorage.getItem('carrito')===null) {  //si no se encuentra en el localStorage
+            carrito = [];                                //se crea un array vacío
+        } else{                                        //Si no:
+            carrito = JSON.parse(localStorage.getItem('carrito')); //se toma el valor del item carrito del localStorage parseado
         }
 
-        let almacenadoEnCarrito;
-        function comprobarAlmacenamiento(carro){
-            for (let i = 0; i < carro.length; i++) {
-                if (carro[i].id == idCurso) {
-                    return true;
+        let almacenadoEnCarrito; //variable utilizada como booleano
+        function comprobarAlmacenamiento(carro){  //comprobación del almacenamiento del carro para validar si un curso se encuentra o no en el mismo
+            for (let i = 0; i < carro.length; i++) { //por cada elemento del carro
+                if (carro[i].id == idCurso) {   //si el elemento.id coincide con el id del objeto tomado anteriormente
+                    return true; //retorna true
                 }
             }
-            return false;
+            return false; //si no encuentra coincidencias, retorna false
         }
-        almacenadoEnCarrito = comprobarAlmacenamiento(carrito);
-
-        if (almacenadoEnCarrito) {
-            alert('El curso se encuentra en el carrito actualmente')
-        } else {
-            let nuevoCurso = {
+        almacenadoEnCarrito = comprobarAlmacenamiento(carrito); //la variable será igual a true o false
+                                    //en base a eso:
+        if (almacenadoEnCarrito) { //si se encuentra el elemento almacenado en el carrito:
+            alert('El curso se encuentra en el carrito actualmente') //alert
+        } else {                    //Si no:
+            let nuevoCurso = {   //se crea un nuevo objeto con id y precio seleccionados del atributo data-id y data-precio 
                 'id':idCurso,
                 'precio':valorCurso
             };
-            carrito.push(nuevoCurso);
-            localStorage.setItem('carrito', JSON.stringify(carrito));
-            cursosAlmacenados=Number(contadorElementosCarrito.textContent);
-            cursosAlmacenados++;
-            localStorage.setItem('contadorCursos', Number(cursosAlmacenados));
-            contadorElementosCarrito.innerHTML = localStorage.getItem('contadorCursos');
-            //Pendiente: al recargar la página, que también traiga el contador del carrito actualizado
+            carrito.push(nuevoCurso); //se agrega el objeto al array
+            localStorage.setItem('carrito', JSON.stringify(carrito)); //se parsea a json y se envía al localStorage
+            let cursosAlmacenados=Number(contadorElementosCarrito.textContent);  //variable que se le asigna el contenido del contador del carrito
+            cursosAlmacenados++;                            //se aumenta el contador
+            localStorage.setItem('contadorCursos', Number(cursosAlmacenados)); //se guarda en el localStorage el item contadorCursos que almacena el valor de la variable cursosAlmacenados
+            contadorElementosCarrito.innerHTML = localStorage.getItem('contadorCursos'); //por último, el contenido del contador del HTML toma el valor del contador del storage
+
         }
-
     });
-
 });
 
 
