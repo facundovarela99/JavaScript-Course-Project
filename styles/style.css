@@ -69,7 +69,7 @@ h1 {
     width: 50%;
 }
 
-#botonVerInfo,#botonComprar {
+#botonVerInfo,#botonComprar,#btnVaciarCarrito {
     margin-top: 10px !important;
     margin-bottom: 10px !important;
     border-radius: 5px !important;
@@ -79,4 +79,9 @@ h1 {
     background-color: transparent !important;
     border: transparent !important;
     border-radius: 5px !important;
+}
+
+.cursoCarrito{
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
